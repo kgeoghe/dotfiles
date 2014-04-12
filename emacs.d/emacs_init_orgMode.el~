@@ -1,0 +1,142 @@
+;;; Org Mode and MobileOrg
+
+;; Automatically uses org-mode when opening '*.org' files
+(require 'org)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+;; MobileOrg settings
+; where org files reside on local machine
+(setq org-directory "~/org/")
+; file where data is captured from mobile device
+(setq org-mobile-indox-for-pull "~/org/from-mobile.org")
+; where files will be synced ('staging' area)
+(setq org-mobile-directory "/Volumes/kgeoghe/org/")
+; files to be pushed to mobile device
+(setq org-mobile-files '("~/org/newgtd.org"
+			"~/org/journal.org"))
+; makes viewing agendas on mobile device MUCH easier
+(setq org-agenda-custom-commands
+       '(("w" todo "TODO")
+         ("h" agenda "" ((org-agenda-show-all-dates nil)))
+         ("W" agenda "" ((org-agenda-ndays 21)
+                         (org-agenda-show-all-dates nil)))
+         ("A" agenda ""
+          ((org-agenda-ndays 1)
+           (org-agenda-overriding-header "Today")))))
+; makes it so org-mobile won't add property drawer to files
+(setq org-mobile-force-id-on-agenda-items nil)
+
+;; Refile parameters for easy note sorting
+; Refiling C-c C-w
+(setq org-refile-targets '((nil :maxlevel . 2)
+                           ("~/org/newgtd.org" :maxlevel . 2)
+                           ("~/org/journal.org" :maxlevel . 2)
+;                           ("~/org/info.org" :maxlevel . 2)
+;                           ("~/org/projects.org" :maxlevel . 2)
+;                           ("~/org/personal.org" :maxlevel . 2)
+                           ))
+
+; This allows for file like pathing for refiling
+;  and lets me pick heading and subheading (level <= 2)
+(setq org-refile-use-outline-path 1)
+
+;; Encrypt data on WebDAV server (myDisk)
+; Enable encryption
+(setq org-mobile-use-encryption 1)
+; Set a password
+(setq org-mobile-encryption-password ")y3P;mCtUDjC4ZA>X7U]p]dP6G9Rrny4Xq/7pT4idB{y*V46:]")
+
+;; Word count for org-mode
+(defvar count-words-buffer
+  nil
+  "*Number of words in the buffer.")
+
+(defun wicked/update-wc ()
+  (interactive)
+  (setq count-words-buffer (number-to-string (count-words-buffer)))
+  (force-mode-line-update))
+  
+; only setup timer once
+(unless count-words-buffer
+  ; seed count-words-paragraph
+  ; create timer to keep count-words-paragraph updated
+  (run-with-idle-timer 1 t 'wicked/update-wc))
+
+; add count words paragraph the mode line
+(unless (memq 'count-words-buffer global-mode-string)
+  (add-to-list 'global-mode-string "words: " t)
+  (add-to-list 'global-mode-string 'count-words-buffer t)) 
+
+; count number of words in current paragraph
+(defun count-words-buffer ()
+  "Count the number of words in the current paragraph."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (let ((count 0))
+      (while (not (eobp))
+	(forward-word 1)
+        (setq count (1+ count)))
+      count)))
+
+; KG - I don't think this is working properly
+;; Allows TO-DO lists to work with headlines
+(defun wicked/org-update-checkbox-count (&optional all)
+  "Update the checkbox statistics in the current section.
+This will find all statistic cookies like [57%] and [6/12] and update
+them with the current numbers.  With optional prefix argument ALL,
+do this for the whole buffer."
+  (interactive "P")
+  (save-excursion
+    (let* ((buffer-invisibility-spec (org-inhibit-invisibility)) 
+	   (beg (condition-case nil
+		    (progn (outline-back-to-heading) (point))
+		  (error (point-min))))
+	   (end (move-marker
+		 (make-marker)
+		 (progn (or (outline-get-next-sibling) ;; (1)
+			    (goto-char (point-max)))
+			(point))))   
+	   (re "\\(\\[[0-9]*%\\]\\)\\|\\(\\[[0-9]*/[0-9]*\\]\\)")
+	   (re-box
+	    "^[ \t]*\\(*+\\|[-+*]\\|[0-9]+[.)]\\) +\\(\\[[- X]\\]\\)")
+	   b1 e1 f1 c-on c-off lim (cstat 0))
+      (when all
+	(goto-char (point-min))
+	(or (outline-get-next-sibling) (goto-char (point-max))) ;; (2)
+	(setq beg (point) end (point-max)))
+      (goto-char beg)
+      (while (re-search-forward re end t)
+	(setq cstat (1+ cstat)
+	      b1 (match-beginning 0)
+	      e1 (match-end 0)
+	      f1 (match-beginning 1)
+	      lim (cond
+		   ((org-on-heading-p)
+		    (or (outline-get-next-sibling) ;; (3)
+			(goto-char (point-max)))
+		    (point))
+		   ((org-at-item-p) (org-end-of-item) (point))
+		   (t nil))
+	      c-on 0 c-off 0)
+	(goto-char e1)
+	(when lim
+	  (while (re-search-forward re-box lim t)
+	    (if (member (match-string 2) '("[ ]" "[-]"))
+		(setq c-off (1+ c-off))
+	      (setq c-on (1+ c-on))))
+	  (goto-char b1)
+	  (insert (if f1
+		      (format "[%d%%]" (/ (* 100 c-on)
+					  (max 1 (+ c-on c-off))))
+		    (format "[%d/%d]" c-on (+ c-on c-off))))
+	  (and (looking-at "\\[.*?\\]")
+	       (replace-match ""))))
+      (when (interactive-p)
+	(message "Checkbox statistics updated %s (%d places)"
+		 (if all "in entire file" "in current outline entry")
+		 cstat)))))
+(defadvice org-update-checkbox-count (around wicked activate)
+  "Fix the built-in checkbox count to understand headlines."
+  (setq ad-return-value
+	(wicked/org-update-checkbox-count (ad-get-arg 1))))

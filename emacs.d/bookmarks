@@ -1,0 +1,15 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-refile-last-stored"
+ (filename . "~/org/newgtd.org")
+ (front-context-string . "** TODO Research")
+ (rear-context-string . "4-11 Fri 09:45]\n")
+ (position . 8820))
+("org-remember-last-stored"
+ (filename . "~/org/journal.org")
+ (front-context-string . "** Bike to work ")
+ (rear-context-string . "4-11 Sat 08:54]\n")
+ (position . 22296))
+)
