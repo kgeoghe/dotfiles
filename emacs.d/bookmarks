@@ -4,12 +4,12 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-refile-last-stored"
  (filename . "~/org/newgtd.org")
- (front-context-string . "** TODO Research")
- (rear-context-string . "4-11 Fri 09:45]\n")
- (position . 8820))
+ (front-context-string . "** TODO Setup su")
+ (rear-context-string . "4-22 Tue 18:02]\n")
+ (position . 10280))
 ("org-remember-last-stored"
  (filename . "~/org/journal.org")
  (front-context-string . "** Bike to work ")
- (rear-context-string . "4-11 Sat 08:54]\n")
- (position . 22296))
+ (rear-context-string . "5-07 Wed 11:21]\n")
+ (position . 24972))
 )

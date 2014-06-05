@@ -121,3 +121,4 @@
  ))
 
 (workgroups-mode 1)
+(put 'upcase-region 'disabled nil)
