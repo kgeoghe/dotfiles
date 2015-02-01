@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/kgeoghe/.mutt/bin'
 let g:netrw_dirhist_2='/Users/kgeoghe/Repos/SciPy2013/examples'
 let g:netrw_dirhist_3='/Users/kgeoghe/Documents/Oklahoma/Thesis/R-CLIPER/rainfall/R-CLIPER_files_kg/rainRateOutput'
 let g:netrw_dirhist_4='/Users/kgeoghe/Documents/Finance/Portfolio History/Transactions'
 let g:netrw_dirhist_5='/Users/kgeoghe/Documents/Oklahoma/Thesis/Docs/OU-Thesis/.git'
 let g:netrw_dirhist_6='/Users/kgeoghe/.vim'
+let g:netrw_dirhist_7='/Users/kgeoghe/Documents/Oklahoma/Thesis/Docs/OU-Thesis/.git'
+let g:netrw_dirhist_8='/Users/kgeoghe/.emacs.d'

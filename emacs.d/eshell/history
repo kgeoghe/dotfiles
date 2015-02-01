@@ -1,1 +1,18 @@
-echo $PATH
+lal
+ls
+ls -l
+ls -lA
+history
+history 
+cd Repos/
+hello
+lal
+ls -al
+lal
+lal
+ls -la
+lal
+ls -la
+pwd
+quit
+exit
