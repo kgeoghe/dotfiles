@@ -1,0 +1,23 @@
+Items left to do for setting up new emacs install:
+
+* finish automation of mode-based color-theming
+** files affected so far:
+- custom.el
+- custom-functions.el
+- .emacs
+* latexmk? (C-0 compiling?)
+** don't want to lose some of the sweet functionality I have now (forward searching to pdf)
+* list of items that make the emacs install not port so well (look into in spare time)
+** fill-column-indicator plugin
+*** downloaded this plugin and placed the directory in .emacs.d/el-get/fill-column-indicator/
+*** files affected: .emacs, fill-column-indicator-settings.el
+*** just find a way to replicate el-get-settings.el in a way that automatically downloads fill-column-indicator from it repository
+**** this is how all the other plugins are automatically installed
+**** jess hamrick used a lot of code from dimitri/el-get on github -> use this as guide
+** color theming
+*** files affected: .emacs, color-theme-switching-settings.el, color-face-settings.el el-get-settings.el, customize.el
+*** currently employ color-theme-switch-switching in settings with f5 key to switch between color-theme color themes
+- remember, color-theme is the pre Emacs 24 way to port color theme packages, and the developer of solarized theme says to use his GitHub repo instead of color-theme if you have Emacs 24
+- not sure if there are any important differences between the two suppliers of solarized color theme
+*** currently load up solarized with color-face-settings.el in settings
+*** heres the /important/ part: in color-face-settings.el, I set the custom theme load path to a directory in .emacs.d/el-get/ called custom-themes/. The el-get/ directory is what is set in .emacs as the plugin directory, meaning that the automatic download of plugins defined in el-get-settings.el are placed in el-get. Originally, color-theme-solarized was in that package list to download, and would have been installed right in .emacs.d/el-get/, but I cloned the solarized GitHub repo inside of custom-themes/ instead. This allowed me to have more than one custom theme in the custom theme load path, instead of what was originally set for the custom theme load path: "color-theme-solarized". I think this is better, but I'm just not quite sure how to make this easily portable. I think modifying the el-get-settings.el file somehow, or creating oen similar to it, with a separate directory from el-get, that will house all the specified color theme packages that need to be downloaded. I just didn't have time to go through that file and understand it well enough to modifer/recreate it.

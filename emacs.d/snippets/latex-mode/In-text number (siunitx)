@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: In-text number (siunitx)
+# key: num
+# --
+\num{$1}

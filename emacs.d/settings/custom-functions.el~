@@ -1,0 +1,97 @@
+;----------------------;
+;;; Custom Functions ;;;
+;----------------------;
+
+(require 'color-theme)
+(color-theme-initialize)
+ 
+(setq my-color-themes (list 'color-theme-solarized
+                            'color-theme-aalto-light
+                            'color-theme-dark-laptop
+                            'color-theme-sitaramv-solaris
+                            'color-theme-sitaramv-nt
+                              ))
+ 
+(defun my-theme-set-default () ; Set the first row
+      (interactive)
+      (setq theme-current my-color-themes)
+      (funcall (car theme-current)))
+ 
+    (defun my-describe-theme () ; Show the current theme
+      (interactive)
+      (message "%s" (car theme-current)))
+ 
+   ; Set the next theme (fixed by Chris Webber - thanks)
+    (defun my-theme-cycle ()
+      (interactive)
+      (setq theme-current (cdr theme-current))
+      (if (null theme-current)
+      (setq theme-current my-color-themes))
+      (funcall (car theme-current))
+      (message "%S" (car theme-current)))
+ 
+    (setq theme-current my-color-themes)
+    (setq color-theme-is-global nil) ; Initialization
+    (my-theme-set-default)
+    (global-set-key [f11] 'my-theme-cycle)
+
+; added by Kevin G on 30 Jan 2015
+; color theme depending on file suffix
+;; (defun my-set-theme-on-mode ()
+;;   "set background color depending on file suffix"
+;;   (interactive)
+;;   (let ((fileNameSuffix (file-name-extension (buffer-file-name) ) ))
+;;     (require 'color-theme)
+;;     (color-theme-initialize)
+;;     (cond
+;;      ((string= fileNameSuffix "el" ) (set-background-color "honeydew"))
+;;      ((string= fileNameSuffix "tex" ) (set-background-color "cornsilk"))
+;;      ((string= fileNameSuffix "org" ) (load theme 'aalto-light))
+;;      (t (message "%s" "no match found"))
+;;      )
+;;     ))
+
+;; (add-hook 'find-file-hook 'my-set-theme-on-mode)
+
+;(include-plugin "color-theme-buffer-local")
+;(require 'color-theme-buffer-local)
+(add-hook 'org-mode
+          (lambda nil (color-theme-buffer-local 'color-theme-aalto-light (current-buffer))))
+
+; unfill a paragraph, i.e., make it so the text does not wrap in the
+; paragraph where the cursor is
+(defun unfill-paragraph ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+; unfill a region, i.e., make is so the text in that region does not
+; wrap
+(defun unfill-region ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-region (region-beginning) (region-end) nil)))
+
+(defun system-is-mac ()
+  (interactive)
+  (string-equal system-type "darwin"))
+
+(defun system-is-linux ()
+  (interactive)
+  (string-equal system-type "gnu/linux"))
+
+(defun make-plugin-path (plugin)
+  (expand-file-name
+   (concat plugin-path plugin)))
+
+(defun include-plugin (plugin)
+  (add-to-list 'load-path (make-plugin-path plugin)))
+
+(defun make-elget-path (plugin)
+  (expand-file-name
+   (concat elget-path plugin)))
+
+(defun include-elget-plugin (plugin)
+  (add-to-list 'load-path (make-elget-path plugin)))
+
+(provide 'custom-functions)

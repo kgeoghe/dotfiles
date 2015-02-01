@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ACROnym
+# key: acro
+# --
+\acro{$1}

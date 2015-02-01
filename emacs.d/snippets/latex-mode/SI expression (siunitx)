@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: SI expression (siunitx)
+# key: SI
+# --
+\SI{$1}{\\${2:celsius}}
