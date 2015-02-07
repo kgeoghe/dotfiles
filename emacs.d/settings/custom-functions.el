@@ -2,6 +2,15 @@
 ;;; Custom Functions ;;;
 ;----------------------;
 
+;; borrowed from http://ergoemacs.org/emacs/emacs_make_modern.html
+(defun kg-toggle-margin-right ()
+  "Toggle the right margin between `fill-column' or window width.
+This command is convenient when reading novel, documentation."
+  (interactive)
+  (if (eq (cdr (window-margins)) nil)
+      (set-window-margins nil 0 (- (window-body-width) fill-column))
+    (set-window-margins nil 0 0) ) )
+
 ; unfill a paragraph, i.e., make it so the text does not wrap in the
 ; paragraph where the cursor is
 (defun unfill-paragraph ()

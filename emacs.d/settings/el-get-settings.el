@@ -30,6 +30,7 @@
                helm-descbinds
                js2-mode
                yasnippet
+               color-theme
                ))   
 
 ; first enable shallow clone, so we don't need to clone the entire

@@ -58,8 +58,12 @@
 (require 'fill-column-indicator-settings)
 
 ;; added by Kevin G on 31 Jan 2015
+;; Colors and Faces
+(require 'color-face-settings)
+
+;; added by Kevin G on 31 Jan 2015
 ;; Color theme switching
-(require 'color-theme-switching-settings )
+(require 'color-theme-switching-settings)
 
 ;-----------;
 ;;; Modes ;;;
@@ -96,9 +100,8 @@
 ;; Org mode
 (require 'org-settings)
 
-;; added by Kevin G on 31 Jan 2015
-;; Colors and Faces
-(require 'color-face-settings)
+;; Gnus
+;(require 'gnus-settings)
 
 ;---------------------------------------------------------------------
 ;; Put auto 'custom' changes in a separate file (this is stuff like
