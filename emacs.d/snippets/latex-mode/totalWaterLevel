@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Total Water Level
+# key: twl
+# binding: direct-keybinding
+# --
+\acro{TWL}
