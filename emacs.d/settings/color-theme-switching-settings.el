@@ -3,7 +3,7 @@
 ;-----------;
 
 (require 'color-theme)
-(color-theme-initialize)
+(load "~/.emacs.d/el-get/custom-themes/emacs-color-theme-solarized/color-theme-solarized.el")
  
 (setq my-color-themes (list 'color-theme-solarized
                             'color-theme-aalto-light
