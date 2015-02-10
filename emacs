@@ -16,6 +16,9 @@
 ;; configure eshell settings
 (require 'eshell-settings)
 
+;; configure org mode/jekyll settings (for blogging)
+(require 'org-jekyll-settings)
+
 ;---------------;
 ;;; Utilities ;;;
 ;---------------;

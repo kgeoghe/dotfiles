@@ -104,7 +104,7 @@
 
 ; make sure transient mark mode is enabled (it should be by default,
 ; but just in case)
-(transient-mark-mode 1)
+(transient-mark-mode 0) ; was formerly 1
 
 ; highlight parentheses when the cursor is next to them
 (require 'paren)
