@@ -9,7 +9,11 @@ Items left to do for setting up new emacs install:
 *** just find a way to replicate el-get-settings.el in a way that automatically downloads fill-column-indicator from it repository
 **** this is how all the other plugins are automatically installed
 **** jess hamrick used a lot of code from dimitri/el-get on github -> use this as guide
+** bbdb
+*** same thing going on here as is going on in [[*fill-column-indicator%20plugin][fill-column-indicator plugin]].
+*** set up so this plugin automatically downloads from MELPA on fresh installs
 ** color theming
+*** [2015-02-10 Tue 14:26] Made updates to the color switching function to just switch between light/dark solarized. Changes reflected in git version control.
 *** files affected: .emacs, color-theme-switching-settings.el, color-face-settings.el el-get-settings.el
 *** currently employ color-theme-switch-switching in settings with f5 key to switch between .emacs.d/el-get/custom-themes/emacs-color-theme-solarized/color-theme-solarized.el and color-theme color themes
 - remember, color-theme is the pre Emacs 24 way to port color theme packages
