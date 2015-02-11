@@ -30,4 +30,7 @@
 			:foundry "apple" 
 			:family "DejaVu_Sans_Mono"))
 
+; allows proper alignment of Org Mode tables
+(set-face-attribute 'org-table nil :foreground "Dark Gray"  :inherit 'fixed-pitch)
+
 (provide 'color-face-settings)
