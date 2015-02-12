@@ -104,7 +104,7 @@
 (require 'org-settings)
 
 ;; Gnus
-;(require 'gnus-settings)
+(require 'gnus-settings)
 
 ;; ESV Mode
 (require 'esv)
