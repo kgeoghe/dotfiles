@@ -32,6 +32,8 @@
                yasnippet
                color-theme
                esv
+               emacs-w3m
+;               smtpmail-multi
                ))   
 
 ; first enable shallow clone, so we don't need to clone the entire
