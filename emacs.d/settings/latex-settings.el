@@ -35,6 +35,7 @@
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
 	    (tex-pdf-mode 1)
-            (TeX-source-correlate-mode 1)))
+            (TeX-source-correlate-mode 1)
+            (setq fill-column 85)))
 
 (provide 'latex-settings)
