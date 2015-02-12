@@ -10,13 +10,11 @@
   (load-theme 'solarized 1)
   (setq solarized-termcolors 256)
   (add-hook 'after-make-frame-functions (lambda (frame)
-                                        (set-frame-parameter frame-background-mode 'light)
+                                        (set-frame-parameter frame-background-mode 'dark)
                                         (enable-theme 'solarized))))
 
 (defun set-term-theme()
   (color-theme-matrix))
-  ;; (add-hook 'after-make-frame-functions (setq frame-background-mode 'dark)))
-  ;;           (enable-theme 'solarized)))
 
 ; use dark them by default for terminal
 (if (display-graphic-p)
@@ -32,5 +30,24 @@
 
 ; allows proper alignment of Org Mode tables
 (set-face-attribute 'org-table nil :foreground "Dark Gray"  :inherit 'fixed-pitch)
+
+;; Use variable width font faces in current buffer
+ (defun my-buffer-face-mode-variable ()
+   "Set font to a variable width (proportional) fonts in current buffer"
+   (interactive)
+   (setq buffer-face-mode-face '(:family "Symbola" :height 100 :width semi-condensed))
+   (buffer-face-mode))
+
+ ;; Use monospaced font faces in current buffer
+ (defun my-buffer-face-mode-fixed ()
+   "Sets a fixed width (monospace) font in current buffer"
+   (interactive)
+   (setq buffer-face-mode-face '(:family "Lucida Console"));:family "Inconsolata" :height 100))
+   (buffer-face-mode))
+
+ ;; Set default font faces for Info and ERC modes
+(add-hook 'gnus-summary-mode-hook 'my-buffer-face-mode-fixed)
+;;(add-hook 'erc-mode-hook 'my-buffer-face-mode-variable)
+;;(add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
 
 (provide 'color-face-settings)
