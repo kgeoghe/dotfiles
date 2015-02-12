@@ -33,12 +33,8 @@
 (if (system-is-mac)
     (setq ns-command-modifier 'meta))
 
-; Easy PG
-(require 'epa-file)
-(epa-file-enable)
-
 ; number of characters until the fill column 
-(setq-default fill-column 85) ; was set to 70
+(setq-default fill-column 80) ; was set to 70
 
 ; disabled by Kevin G on 31 Jan 2015
 ; each line of text gets one line on the screen (i.e., text will run
@@ -126,6 +122,10 @@
 (setq backup-inhibited t)
 ; disable auto save
 (setq auto-save-default nil)
+
+; Easy PG
+(require 'epa-file)
+(epa-file-enable)
 
 
 (provide 'general-settings)
