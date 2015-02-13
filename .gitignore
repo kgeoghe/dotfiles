@@ -1,0 +1,12 @@
+
+/.DS_Store
+/emacs.d/.emacs.desktop
+/emacs.d/ac-comphist.dat
+/emacs.d/auto-save-list/
+/emacs.d/el-get/
+/emacs.d/elpa/
+/emacs.d/eshell/
+/emacs.d/games/
+/emacs.d/ido.last
+/emacs.d/tramp
+/vim/.netrwhist
