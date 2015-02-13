@@ -5,11 +5,21 @@
 (require 'color-theme)
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/el-get/custom-themes/emacs-color-theme-solarized/"))
 
+<<<<<<< HEAD
 (defun set-gui-theme()
   (load-theme 'solarized 1)
   (setq solarized-termcolors 256)
   (set-frame-parameter (next-frame) 'background-mode 'dark)
   (enable-theme 'solarized))
+=======
+; initiate dark solarized
+(defun set-gui-theme()
+  (load-theme 'solarized 1)
+  (setq solarized-termcolors 256)
+  (add-hook 'after-make-frame-functions (lambda (frame)
+                                        (set-frame-parameter frame-background-mode 'dark)
+                                        (enable-theme 'solarized))))
+>>>>>>> 5600e0f7f874ba2ea3832843cea64c45c4e2a38c
 
 (defun set-term-theme()
   (color-theme-matrix))
