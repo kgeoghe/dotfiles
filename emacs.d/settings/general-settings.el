@@ -11,7 +11,6 @@
     (setq exec-path (split-string path-from-shell path-separator))))
  
 (if window-system(set-exec-path-from-shell-PATH))
-(if window-system(setenv "HOME" "~/"))
 
 ; language
 (setq current-language-environment "English")
