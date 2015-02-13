@@ -47,7 +47,6 @@
 
  ;; Set default font faces for Info and ERC modes
 (add-hook 'gnus-summary-mode-hook 'my-buffer-face-mode-fixed)
-;;(add-hook 'erc-mode-hook 'my-buffer-face-mode-variable)
-;;(add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
+
 
 (provide 'color-face-settings)
