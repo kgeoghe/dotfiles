@@ -68,6 +68,8 @@
 ;; Color theme switching
 (require 'color-theme-switching-settings)
 
+(require 'one-key-settings)
+
 ;-----------;
 ;;; Modes ;;;
 ;-----------;
@@ -117,5 +119,8 @@
 (load 
  (setq custom-file (expand-file-name "settings/custom.el" user-emacs-directory))
  'noerror)
+
+
+
 
 

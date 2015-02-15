@@ -34,6 +34,9 @@
                esv
                emacs-w3m
 ;               smtpmail-multi
+               one-key
+               chess
+               hexrgb
                ))   
 
 ; first enable shallow clone, so we don't need to clone the entire
