@@ -32,7 +32,7 @@
 
 (setq gnus-parameters
       '(("INBOX"
-         (auto-expire . t)
+         (total-expire . t)
          (expiry-wait . 2))))
 
 (setq nnmail-expiry-wait-function
