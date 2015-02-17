@@ -12,6 +12,8 @@
 ;; install dependencies with el-get
 (require 'el-get-settings)
 
+;(require 'melpa-settings)
+
 ;; added by Kevin G on 30 Jan 2015
 ;; configure eshell settings
 (require 'eshell-settings)
