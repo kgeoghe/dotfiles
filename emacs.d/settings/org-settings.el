@@ -18,26 +18,65 @@
 
 (org-defkey org-mode-map "\C-ca" 'org-agenda)
 
-(eval-after-load "org"
-  '(progn
-     (define-prefix-command 'org-todo-state-map)
-
-     (define-key org-mode-map "\C-cx" 'org-todo-state-map)
-
-     (define-key org-todo-state-map "x"
-       #'(lambda nil (interactive) (org-todo "CANCELLED")))
-     (define-key org-todo-state-map "d"
-       #'(lambda nil (interactive) (org-todo "DONE")))
-     (define-key org-todo-state-map "f"
-       #'(lambda nil (interactive) (org-todo "DEFERRED")))
-     (define-key org-todo-state-map "l"
-       #'(lambda nil (interactive) (org-todo "DELEGATED")))
-     (define-key org-todo-state-map "s"
-       #'(lambda nil (interactive) (org-todo "STARTED")))
-     (define-key org-todo-state-map "w"
-       #'(lambda nil (interactive) (org-todo "WAITING")))))
-
 ;;;;;;;;;;;;;;;; begin from jwiegley dot-org.el
+
+;;;_ . keybindings
+
+(defvar org-mode-completion-keys
+  '((?d . "DONE")
+    (?g . "DELEGATED")
+    (?n . "NOTE")
+    (?r . "DEFERRED")
+    (?s . "STARTED")
+    (?t . "TODO")
+    (?w . "WAITING")
+    (?x . "CANCELED")
+    (?y . "SOMEDAY")
+    ))
+
+(defvar org-todo-state-map nil)
+(define-prefix-command 'org-todo-state-map)
+
+(dolist (ckey org-mode-completion-keys)
+  (let* ((key (car ckey))
+         (label (cdr ckey))
+         (org-sym (intern (concat "my-org-todo-" (downcase label))))
+         (org-sym-no-logging
+          (intern (concat "my-org-todo-" (downcase label) "-no-logging")))
+         (org-agenda-sym
+          (intern (concat "my-org-agenda-todo-" (downcase label))))
+         (org-agenda-sym-no-logging
+          (intern (concat "my-org-agenda-todo-"
+                          (downcase label) "-no-logging"))))
+    (eval
+     `(progn
+        (defun ,org-sym ()
+          (interactive)
+          (org-todo ,label))
+        (bind-key (concat "C-c x " (char-to-string ,key)) ',org-sym)
+        (defun ,org-sym-no-logging ()
+          (interactive)
+          (let ((org-inhibit-logging t))
+            (org-todo ,label)))
+        (bind-key (concat "C-c x " (char-to-string ,(upcase key)))
+                  ',org-sym-no-logging)
+        (defun ,org-agenda-sym ()
+          (interactive)
+          (let ((org-inhibit-logging
+                 (let ((style (org-entry-get
+                               (get-text-property (point) 'org-marker)
+                               "STYLE")))
+                   (and style (stringp style)
+                        (string= style "habit")))))
+            (org-agenda-todo ,label)))
+        (define-key org-todo-state-map [,key] ',org-agenda-sym)
+        (defun ,org-agenda-sym-no-logging ()
+          (interactive)
+          (let ((org-inhibit-logging t))
+            (org-agenda-todo ,label)))
+        (define-key org-todo-state-map [,(upcase key)]
+          ',org-agenda-sym-no-logging)))))
+
 (let ((map org-agenda-mode-map))
   (define-key map "\C-n" 'next-line)
   (define-key map "\C-p" 'previous-line)
