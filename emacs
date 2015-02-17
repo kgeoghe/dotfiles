@@ -24,6 +24,9 @@
 ;; configure org mode/jekyll settings (for blogging)
 (require 'org-jekyll-settings)
 
+;; use-package package by jwiegley
+(require 'use-package)
+
 ;---------------;
 ;;; Utilities ;;;
 ;---------------;
