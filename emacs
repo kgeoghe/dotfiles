@@ -79,6 +79,10 @@
 
 (require 'one-key-settings)
 
+(require 'muse)
+
+(require 'bind-key)
+
 ;-----------;
 ;;; Modes ;;;
 ;-----------;
