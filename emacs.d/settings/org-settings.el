@@ -9,6 +9,8 @@
 (setq org-use-tag-inheritance nil)
 (setq org-startup-indented t)
 (define-key global-map "\C-cl" 'org-store-link)
+
+;; record date/time task was marked DONE
 (setq org-log-done 'time)
 
 ;;_ , Basics for org-mode GTD a la jwiegly
