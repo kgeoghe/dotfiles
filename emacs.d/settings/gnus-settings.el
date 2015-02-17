@@ -104,6 +104,16 @@
 (setq user-full-name "Kevin Geoghegan"
       user-mail-address "kgeoghe@gmail.com")
 
+(setq gnus-posting-styles
+      '(((header "to" "kgeoghe@gmail.com")
+         (address "kgeoghe@gmail.com"))
+	((header "to" "keving@ou.edu")
+         (address "keving@ou.edu"))
+	((header "cc" "kgeoghe@gmail.com")
+         (address "kgeoghe@gmail.com"))
+	((header "cc" "keving@ou.edu")
+         (address "keving@ou.edu"))))
+
 ;; You need install the command line browser 'w3m' and Emacs plugin 'w3m'
 (setq mm-text-html-renderer 'w3m)
 
@@ -117,7 +127,7 @@
 ;; http://www.gnu.org/software/emacs/manual/html_node/gnus/_005b9_002e2_005d.html
 (setq gnus-use-correct-string-widths nil)
 
-; borrowed from TomRauchenwald at http://emacswiki.org/emacs/TomRauchenwald
+;; borrowed from TomRauchenwald at http://emacswiki.org/emacs/TomRauchenwald
 ;; eye candy
 (copy-face 'font-lock-variable-name-face 'gnus-face-6)
 (setq gnus-face-6 'gnus-face-6)
