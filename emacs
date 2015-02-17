@@ -2,6 +2,8 @@
 (add-to-list 'load-path "~/.emacs.d/settings")
 ;; path to where plugins are kept
 (setq plugin-path "~/.emacs.d/el-get/")
+;; path to downloaded lisp files
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; define various custom functions
 (require 'custom-functions)
