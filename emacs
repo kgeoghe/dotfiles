@@ -14,6 +14,7 @@
 ;; install dependencies with el-get
 (require 'el-get-settings)
 
+;; TODO would like to get the melpa repo working for those packages that are not in the el-get repo
 ;(require 'melpa-settings)
 
 ;; added by Kevin G on 30 Jan 2015
