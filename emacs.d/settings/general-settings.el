@@ -86,6 +86,17 @@
 ; set the keybinding so that you can use f4 for goto line
 (global-set-key [f4] 'goto-line)
 
+;; Show line numbers only when jumping there:
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+
 ; require final newlines in files when they are saved
 (setq require-final-newline 1)
 ; add a new line when going to the next line
