@@ -2,6 +2,8 @@
 ;;; GNUS ;;;
 ;-----------;
 
+(autoload 'gmail2bbdb-import-file "gmail2bbdb" "" t)
+
 ;; borrowed from https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/gnus-guide-en.org
 ;-*- Lisp -*-
 (require 'nnir)
@@ -24,29 +26,61 @@
                       (nnimap-authinfo-file "~/.authinfo.gpg")
                       ; @see http://www.gnu.org/software/emacs/manual/html_node/gnus/Expiring-Mail.html
                       ;; press 'E' to expire email
-                      (nnmail-expiry-target "nnimap+gmail:[Gmail]/Trash")
-                      (nnmail-expiry-wait 90)))
+                      (nnmail-expiry-target "nnimap+gmail:Archives")
+                      (nnmail-expiry-wait immediate)
+                      ))
+
+(setq gnus-parameters
+      '(("INBOX"
+         (auto-expire . t)
+         (expiry-wait . 2))))
+
+(setq nnmail-expiry-wait-function
+           (lambda (group)
+            (cond ((string= group "nnimap+gmail:@ Action")
+                   never)
+                  ((string= group "nnimap+gmail:[Gmail]/All Mail")
+                   never)
+                  ((string= group "nnimap+gmail:INBOX")
+                    immediate)
+                  )))
+
+(add-hook 'gnus-summary-exit-hook 'gnus-summary-bubble-group)
+
+;; split works--tested 15-02-16
+;; (setq nnimap-inbox "INBOX")
+;; (setq nnimap-split-methods
+;;  '(("INBOX.kevin" "^From:.*Kevin Geoghegan")))
+
+;; (setq nnmail-expiry-target 'nnmail-fancy-expiry-target
+;;             nnmail-fancy-expiry-targets
+;;             '((to-from "boss" "nnfolder:Work")
+;;               ("subject" "IMPORTANT" "nnfolder:IMPORTANT.%Y.%b")
+;;               ("from" ".*" "nnfolder:Archive-%Y")))
 
 (setq gnus-thread-sort-functions
-      '((not gnus-thread-sort-by-date)
-        (not gnus-thread-sort-by-number)))
+      '(gnus-thread-sort-by-number
+        gnus-thread-sort-by-most-recent-date))
 
 ; NO 'passive
 (setq gnus-use-cache t)
 
 ;; BBDB: Address list
-(require 'bbdb-loaddefs "~/.emacs.d/el-get/bbdb/lisp/bbdb-loaddefs.el")
-(bbdb-initialize 'message 'gnus 'sendmail)
-(setq bbdb-file "~/.bbdb") ;; OPTIONAL, because I'm sharing my ~/.emacs.d
+(require 'bbdb-loaddefs "~/.emacs.d/lisp/bbdb/lisp/bbdb-loaddefs.el")
+(bbdb-initialize 'message 'gnus 'mail)
+(setq bbdb-file "~/.emacs.d/bbdb") ;; OPTIONAL, because I'm sharing my ~/.emacs.d
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-(setq bbdb/mail-auto-create-p t
-      bbdb/news-auto-create-p t)
+(bbdb-mua-auto-update-init 'message)
+(setq bbdb-mua-auto-update-p 'query)
+;;;_ , this auto creates entries from /all/ received mail
+;; (setq bbdb/mail-auto-create-p t
+;;       bbdb/news-auto-create-p t)
 
 ;; auto-complete emacs address using bbdb's own UI
 (add-hook 'message-mode-hook
           '(lambda ()
              (flyspell-mode t)
-             (local-set-key "<TAB>" 'bbdb-complete-name)))
+             (local-set-key "<TAB>"  'bbdb-complete-mail)))
 
 ;; Fetch only part of the article if we can.  I saw this in someone
 ;; else's .gnus
