@@ -12,5 +12,7 @@
 ;alternatively, I like to enable fci-mode for specific file types so I can keep writing buffers
 ;(e.g., TeX) fci free
 (add-hook 'prog-mode-hook 'fci-mode)
+(add-hook 'markdown-mode-hook 'fci-mode)
+(add-hook 'nxhtml-mode-hook 'fci-mode)
 
 (provide 'fill-column-indicator-settings)
