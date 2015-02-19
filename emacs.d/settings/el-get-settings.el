@@ -38,6 +38,7 @@
                chess
                hexrgb
                muse
+               emacs-jabber
                ))   
 
 ; first enable shallow clone, so we don't need to clone the entire
