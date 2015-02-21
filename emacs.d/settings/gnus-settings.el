@@ -34,6 +34,9 @@
       '(("INBOX"
          (total-expire . t)
          (expiry-wait . 2))))
+        ;; ("@ Action"
+        ;;  (auto-expire . t)
+        ;;  (expiry-wait . immediate))))
 
 (setq nnmail-expiry-wait-function
            (lambda (group)
