@@ -27,6 +27,8 @@
 
 ; allows proper alignment of Org Mode tables
 (set-face-attribute 'org-table nil :foreground "Dark Gray"  :inherit 'fixed-pitch)
+(set-face-attribute 'org-date nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-link nil :inherit 'fixed-pitch)
 
 ;; Use variable width font faces in current buffer
  (defun my-buffer-face-mode-variable ()
@@ -44,6 +46,7 @@
 
  ;; Set default font faces for Info and ERC modes
 (add-hook 'gnus-summary-mode-hook 'my-buffer-face-mode-fixed)
-
+(add-hook 'dired-mode-hook 'my-buffer-face-mode-fixed)
+(add-hook 'one-key-mode-hook 'my-buffer-face-mode-fixed)
 
 (provide 'color-face-settings)
