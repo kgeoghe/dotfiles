@@ -86,8 +86,12 @@
 
 (require 'bind-key)
 
+;(include-plugin 'gnuplot-mode)
+(require 'gnuplot-mode)
+
+
 ;-----------;
-;;; Modes ;;;
+;;; modes ;;;
 ;-----------;
 
 ;; Ido mode
@@ -114,6 +118,9 @@
 
 ;; Javascript
 (require 'js-settings)
+
+;; YAML mode
+(require 'yaml-settings)
 
 ;; Nyancat mode!
 (nyan-mode 0)
