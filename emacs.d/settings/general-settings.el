@@ -25,6 +25,9 @@
 ; don't show the scroll bar
 (if window-system (scroll-bar-mode 0))
 
+; first day of the week is Monday
+(setq calendar-week-start-day 1)
+
 ; turn on mouse wheel support for scrolling
 (require 'mwheel)
 (mouse-wheel-mode 1)
