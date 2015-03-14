@@ -48,5 +48,6 @@
 (add-hook 'gnus-summary-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'dired-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'one-key-mode-hook 'my-buffer-face-mode-fixed)
+(add-hook 'calendar-mode-hook 'my-buffer-face-mode-fixed)
 
 (provide 'color-face-settings)
