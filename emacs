@@ -11,6 +11,9 @@
 ;; configure general settings
 (require 'general-settings)
 
+;; configure no backup settings
+(require 'no-backup-settings)
+
 ;; install dependencies with el-get
 (require 'el-get-settings)
 
