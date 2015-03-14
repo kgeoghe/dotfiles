@@ -30,6 +30,7 @@
                helm-descbinds
                js2-mode
                yasnippet
+               yaml-mode
                color-theme
                esv
                emacs-w3m
@@ -39,6 +40,7 @@
                hexrgb
                muse
                emacs-jabber
+               gnuplot-mode
                ))   
 
 ; first enable shallow clone, so we don't need to clone the entire
