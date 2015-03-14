@@ -2,6 +2,14 @@
 ;;; LaTeX ;;;
 ;-----------;
 
+; add texbin to env path so emac.app knows where to find TeX goodies
+(getenv "PATH")
+ (setenv "PATH"
+(concat
+ (getenv "PATH")
+ ":" "/usr/texbin"
+))
+
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
 (include-plugin "auctex")
 (load "auctex.el" -1 1 1)
