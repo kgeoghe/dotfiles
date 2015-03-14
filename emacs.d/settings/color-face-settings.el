@@ -27,8 +27,9 @@
 
 ; allows proper alignment of Org Mode tables
 (set-face-attribute 'org-table nil :foreground "Dark Gray"  :inherit 'fixed-pitch)
-(set-face-attribute 'org-date nil :inherit 'fixed-pitch)
-(set-face-attribute 'org-link nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-date nil :foreground "#d33682" :inherit 'fixed-pitch)
+(set-face-attribute 'org-link nil :foreground "#d33682" :underline t :inherit 'fixed-pitch)
+(set-face-attribute 'org-level-4 nil :foreground "#859900")
 
 ;; Use variable width font faces in current buffer
  (defun my-buffer-face-mode-variable ()
