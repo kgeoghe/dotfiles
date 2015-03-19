@@ -101,7 +101,7 @@
     (linum-mode -1)))
 
 ; require final newlines in files when they are saved
-(setq require-final-newline 1)
+(setq require-final-newline 0)
 ; add a new line when going to the next line
 (setq next-line-add-newlines t)
 
