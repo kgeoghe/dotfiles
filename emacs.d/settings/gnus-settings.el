@@ -2,6 +2,11 @@
 ;;; GNUS ;;;
 ;-----------;
 
+; Disables warning that is displayed when compose-mail (C-x m)  function is called.
+; Warning says something about "mail" being deprecated and "messages" now
+; replaces it.
+(setq compose-mail-user-agent-warnings nil)
+
 (autoload 'gmail2bbdb-import-file "gmail2bbdb" "" t)
 
 ;; borrowed from https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/gnus-guide-en.org
