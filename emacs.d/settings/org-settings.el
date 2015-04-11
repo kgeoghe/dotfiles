@@ -5,6 +5,7 @@
 (require 'org)
 (require 'org-agenda)
 
+(setq org-tags-column 0)
 (setq org-use-fast-todo-selection t)
 (setq org-use-tag-inheritance nil)
 (setq org-startup-indented t)
@@ -18,7 +19,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-(org-defkey org-mode-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-ca" 'org-agenda)
+;(org-defkey org-mode-map "\C-ca" 'org-agenda)
 
 ;;;;;;;;;;;;;;;; begin from jwiegley dot-org.el
 
