@@ -46,4 +46,16 @@
             (TeX-source-correlate-mode 1)
             (setq fill-column 85)))
 
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+
+(defun run-latexmk ()
+  (interactive)
+  (save-buffer)
+  (TeX-command "LatexMk" 'TeX-master-file 0)
+  (if (plist-get TeX-error-report-switches (intern (TeX-master-file)))
+      (next-error))) ;; 0 -> suppress confirmation
+
+(define-key TeX-mode-map (kbd "C-0") 'run-latexmk)
+
 (provide 'latex-settings)
