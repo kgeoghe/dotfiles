@@ -29,6 +29,8 @@
 (set-face-attribute 'org-table nil :foreground "Dark Gray"  :inherit 'fixed-pitch)
 (set-face-attribute 'org-date nil :foreground "#d33682" :inherit 'fixed-pitch)
 (set-face-attribute 'org-link nil :foreground "#d33682" :underline t :inherit 'fixed-pitch)
+
+; don't use the hideous default red in level 4 org headings
 (set-face-attribute 'org-level-4 nil :foreground "#859900")
 
 ;; Use variable width font faces in current buffer
@@ -50,5 +52,6 @@
 (add-hook 'dired-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'one-key-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'calendar-mode-hook 'my-buffer-face-mode-fixed)
+(add-hook 'help-mode-hook 'my-buffer-face-mode-fixed)
 
 (provide 'color-face-settings)
