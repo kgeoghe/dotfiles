@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: citep
+# key: cp
+# --
+\citep{$1}

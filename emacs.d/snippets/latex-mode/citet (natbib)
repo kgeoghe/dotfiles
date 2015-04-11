@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: citet
+# key: ct
+# binding: direct-keybinding
+# --
+\citet{$1}
