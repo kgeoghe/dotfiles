@@ -34,21 +34,6 @@
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
- '(org-capture-templates
-   (quote
-    (("t" "Task" entry
-      (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
-      "* TODO %?
-SCHEDULED: %t
-:PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
-:END:" :prepend t)
-     ("n" "Note" entry
-      (file+headline "~/Documents/Tasks/notes.txt" "Notes")
-      "* NOTE %?
-:PROPERTIES:
-:ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
-:END:" :prepend t))))
  '(org-deadline-warning-days 14)
  '(org-default-notes-file "~/Documents/Tasks/notes.txt")
  '(org-fast-tag-selection-single-key (quote expert))
