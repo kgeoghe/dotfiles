@@ -16,3 +16,4 @@
 /emacs.d/settings/no-backup-settings.el
 /emacs.d/request/
 /emacs.d/.emacs.desktop.lock
+/emacs.d/lisp/gnuplot-mode
