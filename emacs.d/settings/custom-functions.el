@@ -47,4 +47,8 @@ This command is convenient when reading novel, documentation."
 (defun include-elget-plugin (plugin)
   (add-to-list 'load-path (make-elget-path plugin)))
 
+(defun my-org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))
+
 (provide 'custom-functions)

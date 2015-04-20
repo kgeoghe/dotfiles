@@ -19,6 +19,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
+(define-key org-mode-map "\C-xar" 'my-org-archive-done-tasks)
 (define-key global-map "\C-ca" 'org-agenda)
 ;(org-defkey org-mode-map "\C-ca" 'org-agenda)
 
@@ -216,7 +217,13 @@ SCHEDULED: %t
       "* NOTE %?
 :PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
-:END:" :prepend t)))))
+:END:" :prepend t)
+          ("b" "Book" entry
+      (file "~/org/journal.org")
+      "* %^{Title} %u :BOOK:
+:PROPERTIES:
+:Title: %\\1%^{Author}p%^{Year}p%^{Publisher}p
+:END:")))))
 
  ;; '(remember-annotation-functions (quote (org-remember-annotation)))
  ;; '(remember-handler-functions (quote (org-remember-handler))))
