@@ -23,6 +23,16 @@
 (define-key global-map "\C-ca" 'org-agenda)
 ;(org-defkey org-mode-map "\C-ca" 'org-agenda)
 
+;;;_ , Clocking work time settings
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+; from http://stackoverflow.com/questions/26405415/how-to-locally-unset-org-clock-into-drawer-t
+(setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))     ;; Separate drawers for clocking and logs
+(setq org-clock-into-drawer t)    ;; Save clock data and state changes and notes in the LOGBOOK drawer
+(setq org-clock-idle-time 10)
+; scan todo.txt by default for clock table info
+(setq org-clocktable-defaults '(:scope ("~/Documents/Tasks/todo.txt")))
+
 ;;;;;;;;;;;;;;;; begin from jwiegley dot-org.el
 
 ;;;_ . keybindings
