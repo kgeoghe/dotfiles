@@ -17,3 +17,4 @@
 /emacs.d/request/
 /emacs.d/.emacs.desktop.lock
 /emacs.d/lisp/gnuplot-mode
+/emacs.d/org-clock-save.el
