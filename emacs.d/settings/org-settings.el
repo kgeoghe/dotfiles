@@ -31,7 +31,7 @@
 (setq org-clock-into-drawer t)    ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-idle-time 10)
 ; scan todo.txt by default for clock table info
-(setq org-clocktable-defaults '(:scope ("~/Documents/Tasks/todo.txt")))
+(setq org-clocktable-defaults '(:scope ("~/Documents/Tasks/todo.txt") :emphasize t))
 
 ;;;;;;;;;;;;;;;; begin from jwiegley dot-org.el
 
