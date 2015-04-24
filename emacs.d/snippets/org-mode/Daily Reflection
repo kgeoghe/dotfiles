@@ -1,0 +1,25 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Daily Reflection
+# key: ref
+# binding: direct-keybinding
+# --
+Today’s Successful Outcome:
+1. $1
+2. $2
+3. $3
+—————————————
+/End of Day Review/
+What did I do today?
+- $4
+What did I learn?
+- $5
+What can I improve?
+- $6
+What kind act did I do?
+- $7
+What did I enjoy?
+- $8
+Three Things I’m Grateful For:
+1. $9
+2. $10
+3. $11
