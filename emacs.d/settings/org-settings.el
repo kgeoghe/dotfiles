@@ -4,6 +4,7 @@
 
 (require 'org)
 (require 'org-agenda)
+(require 'org-timer)
 
 (setq org-tags-column 0)
 (setq org-use-fast-todo-selection t)
@@ -23,13 +24,35 @@
 (define-key global-map "\C-ca" 'org-agenda)
 ;(org-defkey org-mode-map "\C-ca" 'org-agenda)
 
+;;;_ , Set alarm for timer done
+; found at http://www.emacswiki.org/emacs/AlarmBell#toc10
+(defun my-terminal-visible-bell ()
+  "A friendlier visual bell effect."
+  (invert-face 'mode-line)
+  (run-with-timer 0.4 nil 'invert-face 'mode-line))
+
+;; (defun my-configure-visible-bell ()
+;;   "Use a nicer visual bell in terminals."
+;;   (if window-system
+;;       (setq visible-bell t
+;;             ring-bell-function nil)
+;;     (setq visible-bell nil
+;;           ring-bell-function 'my-terminal-visible-bell)))
+
+(setq visible-bell nil
+      ring-bell-function 'my-terminal-visible-bell)
+(add-hook 'org-timer-done-hook 'ding)
+
 ;;;_ , Clocking work time settings
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 ; from http://stackoverflow.com/questions/26405415/how-to-locally-unset-org-clock-into-drawer-t
-(setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))     ;; Separate drawers for clocking and logs
-(setq org-clock-into-drawer t)    ;; Save clock data and state changes and notes in the LOGBOOK drawer
+(setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))     ;; Separate drawers for
+;clocking and logs
+(setq org-clock-into-drawer t)    ;; Save clock data and state changes and notes in the
+;LOGBOOK drawer
 (setq org-clock-idle-time 10)
+(setq org-clock-modeline-total 'today)
 ; scan todo.txt by default for clock table info
 (setq org-clocktable-defaults '(:scope ("~/Documents/Tasks/todo.txt") :emphasize t))
 
