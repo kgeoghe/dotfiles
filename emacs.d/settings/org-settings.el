@@ -241,7 +241,6 @@
     (("t" "Task" entry
       (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
       "* TODO %?
-SCHEDULED: %t
 :PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
 :END:" :prepend t)
