@@ -63,5 +63,6 @@
 (add-hook 'one-key-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'calendar-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'help-mode-hook 'my-buffer-face-mode-fixed)
+(add-hook 'buffer-menu-mode-hook 'my-buffer-face-mode-fixed)
 
 (provide 'color-face-settings)
