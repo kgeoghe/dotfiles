@@ -25,6 +25,22 @@
 ; don't show the scroll bar
 (if window-system (scroll-bar-mode 0))
 
+;;;_ , Nicer bell settings
+; found at http://www.emacswiki.org/emacs/AlarmBell#toc10
+(defun my-terminal-visible-bell ()
+  "A friendlier visual bell effect."
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil 'invert-face 'mode-line))
+;; (defun my-configure-visible-bell ()
+;;   "Use a nicer visual bell in terminals."
+;;   (if window-system
+;;       (setq visible-bell t
+;;             ring-bell-function nil)
+;;     (setq visible-bell nil
+;;           ring-bell-function 'my-terminal-visible-bell)))
+(setq visible-bell t
+      ring-bell-function 'my-terminal-visible-bell)
+
 ; first day of the week is Monday
 (setq calendar-week-start-day 1)
 
