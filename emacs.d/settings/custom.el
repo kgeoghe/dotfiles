@@ -3,6 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("f37d09076188b2e8d2a6847931deec17f640853aedd8ea4ef3ac57db01335008" default)))
  '(org-agenda-custom-commands
    (quote
     (("d" todo "DELEGATED" nil)
@@ -34,6 +37,26 @@
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
+ '(org-capture-templates
+   (quote
+    (("t" "Task" entry
+      (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
+      "* TODO %?
+:PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
+:END:" :prepend t)
+     ("n" "Note" entry
+      (file+headline "~/Documents/Tasks/notes.txt" "Notes")
+      "* NOTE %?
+:PROPERTIES:
+:ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
+:END:" :prepend t)
+     ("b" "Book" entry
+      (file "~/org/journal.org")
+      "* %^{Title} %u :BOOK:
+:PROPERTIES:
+:Title: %\\1%^{Author}p%^{Year}p%^{Publisher}p
+:END:"))))
  '(org-deadline-warning-days 14)
  '(org-default-notes-file "~/Documents/Tasks/notes.txt")
  '(org-fast-tag-selection-single-key (quote expert))
