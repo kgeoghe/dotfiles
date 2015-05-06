@@ -5,12 +5,20 @@
 (require 'org)
 (require 'org-agenda)
 (require 'org-timer)
+(require 'org-install)
+(add-to-list 'org-modules 'org-habit)
+(require 'holidays)
+(require 'solar)
 
 (setq org-tags-column 0)
 (setq org-use-fast-todo-selection t)
 (setq org-use-tag-inheritance nil)
 (setq org-startup-indented t)
 (define-key global-map "\C-cl" 'org-store-link)
+
+;;_ , Org habits settings
+(setq org-habit-graph-column 48)
+(setq org-habit-following-days 2)
 
 ;; record date/time task was marked DONE
 (setq org-log-done 'time)
