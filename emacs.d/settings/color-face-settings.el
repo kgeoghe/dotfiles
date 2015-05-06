@@ -58,12 +58,13 @@
    (setq buffer-face-mode-face '(:family "Lucida Console"));:family "Inconsolata" :height 100))
    (buffer-face-mode))
 
- ;; Set default font faces for Info and ERC modes
+ ;; Set default font faces for Info, ERC, and a few other modes
 (add-hook 'gnus-summary-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'dired-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'one-key-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'calendar-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'help-mode-hook 'my-buffer-face-mode-fixed)
 (add-hook 'buffer-menu-mode-hook 'my-buffer-face-mode-fixed)
+(add-hook 'org-agenda-mode-hook 'my-buffer-face-mode-fixed)
 
 (provide 'color-face-settings)
