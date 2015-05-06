@@ -255,6 +255,12 @@
 :PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
 :END:" :prepend t)
+          ("w" "Write Something" entry
+      (file+headline "~/org/journal.org" "Current Month")
+      "* %U :WRITE: \n %?")
+          ("e" "Log Exercise" table-line
+      (file+olp "~/org/journal.org" "Logs" "Exercise")
+      "" :table-line-pos "II-2")
           ("b" "Book" entry
       (file "~/org/journal.org")
       "* %^{Title} %u :BOOK:
