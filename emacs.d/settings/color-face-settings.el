@@ -4,6 +4,7 @@
 
 (require 'color-theme)
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/el-get/custom-themes/emacs-color-theme-solarized/"))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 (defun set-gui-theme()
   (load-theme 'solarized 1)
