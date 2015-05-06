@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Business Contact Log Entry
+# key: business
+# binding: direct-keybinding
+# --
+${1:Name of Business}
+Date+Time: $2
+Number dialed: ${3:N/A}
+Duration: ${4:N/A}
+Name: ${5:N/A}
+Comments:
+$0
