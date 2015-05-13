@@ -2,7 +2,20 @@
 ;;; Custom Functions ;;;
 ;----------------------;
 
-;; borrowed from http://ergoemacs.org/emacs/emacs_make_modern.html
+;; borrowed from http://oremacs.com/2015/01/12/dired-file-size/, which is originally from
+; an emacs wiki page
+(defun dired-get-size ()
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+      (message
+       "Size of all marked files: %s"
+       (progn
+         (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
+         (match-string 1))))))
+
+;; Borrowed from http://ergoemacs.org/emacs/emacs_make_modern.html
 (defun kg-toggle-margin-right ()
   "Toggle the right margin between `fill-column' or window width.
 This command is convenient when reading novel, documentation."

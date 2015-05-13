@@ -157,5 +157,7 @@
 (require 'epa-file)
 (epa-file-enable)
 
+;;;_ , Dired Settings (not quite enough for it's own elisp file yet)
+(define-key dired-mode-map (kbd "z") 'dired-get-size)
 
-(provide 'general-settings)
+(Provide 'general-settings)
