@@ -41,6 +41,7 @@
   (require 'play-sound))
 
 (add-hook 'org-timer-done-hook (lambda ()
+                                 (org-timer-start)
                                  (play-sound-file "/Users/kgeoghe/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/DoctorWho-Tardis-TimeMachine.mp3")
                                  (invert-face 'mode-line)
                                  (run-with-timer 0.4 nil 'invert-face 'mode-line)))
