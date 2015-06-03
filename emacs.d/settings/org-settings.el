@@ -215,7 +215,7 @@
 (define-key global-map "\C-\M-r" 'org-capture)
 
 (custom-set-variables
- '(org-agenda-files (quote ("~/Documents/Tasks/todo.txt")))
+ '(org-agenda-files (quote ("~/org/journal.org" "~/Documents/Tasks/todo.txt")))
  '(org-default-notes-file "~/Documents/Tasks/notes.txt")
  '(org-agenda-ndays 7)
  '(org-deadline-warning-days 14)
