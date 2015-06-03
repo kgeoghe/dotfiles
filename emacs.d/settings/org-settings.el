@@ -56,10 +56,12 @@
 ;clocking and logs
 (setq org-clock-into-drawer t)    ;; Save clock data and state changes and notes in the
 ;LOGBOOK drawer
-(setq org-clock-idle-time 10)
+(setq org-clock-idle-time 20)
 (setq org-clock-modeline-total 'today)
 ; scan todo.txt by default for clock table info
 (setq org-clocktable-defaults '(:scope ("~/Documents/Tasks/todo.txt") :emphasize t))
+; I like to have a relative timer going whenever I clock in to a task
+(add-hook 'org-clock-in-hook 'org-timer-start)
 
 ;;;;;;;;;;;;;;;; begin from jwiegley dot-org.el
 
