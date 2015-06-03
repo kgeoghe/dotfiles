@@ -263,6 +263,9 @@
           ("e" "Log Exercise" table-line
       (file+olp "~/org/journal.org" "Logs" "Exercise")
       "" :table-line-pos "II-2")
+          ("m" "Log Mass (Weight)" table-line
+      (file+olp "~/org/journal.org" "Logs" "Weight")
+      "" :table-line-pos "II-2")
           ("b" "Book" entry
       (file "~/org/journal.org")
       "* %^{Title} %u :BOOK:
