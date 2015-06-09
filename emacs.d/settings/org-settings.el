@@ -251,6 +251,7 @@
       "* TODO %?
 :PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
+:CLOCK_MODELINE_TOTAL: all
 :END:" :prepend t)
      ("n" "Note" entry
       (file+headline "~/Documents/Tasks/notes.txt" "Notes")
