@@ -269,10 +269,11 @@
       (file+olp "~/org/journal.org" "Logs" "Weight")
       "" :table-line-pos "II-2")
           ("b" "Book" entry
-      (file "~/org/journal.org")
-      "* %^{Title} %u :BOOK:
+      (file+headline "~/org/books.org" "Backlog")
+      "* %^{Title}
 :PROPERTIES:
-:Title: %\\1%^{Author}p%^{Year}p%^{Publisher}p
+:CREATED: %u
+:Title: %\\1%^{Author}p%^{DateCompleted}p%^{Rating}p%^{RecommendedBy}p%^{Publisher}p%^{Year}p
 :END:")))))
 
  ;; '(remember-annotation-functions (quote (org-remember-annotation)))
