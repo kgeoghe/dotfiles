@@ -259,7 +259,15 @@
 :PROPERTIES:
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
 :END:" :prepend t)
-          ("w" "Write Something" entry
+     ("p" "Project" entry
+      (file+regexp "~/Documents/Tasks/todo.txt" "* Thesis")
+      "* %^{Project Title}
+:PROPERTIES:
+:CATEGORY: %^{CATEGORY}
+:ARCHIVE: %s_archive::* %\\1
+:ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
+:END:" :prepend t)
+     ("w" "Write Something" entry
       (file+headline "~/org/journal.org" "Current Month")
       "* %U :WRITE: \n %?")
           ("e" "Log Exercise" table-line
