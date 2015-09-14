@@ -161,4 +161,17 @@
 (add-hook 'dired-mode-hook (lambda()
                              (local-set-key "z" 'dired-get-size)))
 
+;; easy spell check
+(global-set-key (kbd "<f9>") 'ispell-word)
+(global-set-key (kbd "C-S-<f9>") 'flyspell-mode)
+(global-set-key (kbd "C-M-<f9>") 'flyspell-buffer)
+(global-set-key (kbd "C-<f9>") 'flyspell-check-previous-highlighted-word)
+(defun flyspell-check-next-highlighted-word ()
+  "Custom function to spell check next highlighted word"
+  (interactive)
+  (flyspell-goto-next-error)
+  (ispell-word)
+  )
+(global-set-key (kbd "M-<f9>") 'flyspell-check-next-highlighted-word)
+
 (provide 'general-settings)
