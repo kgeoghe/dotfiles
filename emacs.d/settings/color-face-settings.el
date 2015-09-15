@@ -43,6 +43,10 @@
 ;;                     :weight 'bold :box '(:line-width 1 :color "#D8ABA7")
 ;;                     :foreground "#D8ABA7" :background "#FFE6E4")
 
+;; org agenda
+; all scheduled events should still be green, even if they were scheduled in the past
+(set-face-attribute 'org-scheduled-previously nil :foreground "darkgreen")
+
 ;;;_ , Other Modes
 ;; Use variable width font faces in current buffer
  (defun my-buffer-face-mode-variable ()
