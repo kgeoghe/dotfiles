@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Wrong Email Address
+# key: notme
+# binding: direct-keybinding
+# --
+Hello, This email has reached an unintended recipient. Please remove my
+email address, ${1:kgeoghegan}@gmail.com (or any variation thereof), from
+your future email distributions.
+
+Kind regards,
+kg$0

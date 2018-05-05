@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: DeclareAcronym
+# key: da
+# binding: direct-keybinding
+# --
+\DeclareAcronym{${1:id}}{short = ${2:shortName}, long = ${3:longName}$0}

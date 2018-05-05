@@ -103,9 +103,11 @@
 
 ; keybindings
 (eval-after-load 'python
-  '(define-key python-mode-map (kbd "C-c !") 'python-shell-switch-to-shell))
-(eval-after-load 'python
-  '(define-key python-mode-map (kbd "C-c |") 'python-shell-send-region))
+  (lambda ()
+    (define-key python-mode-map (kbd "C-c !") 'python-shell-switch-to-shell)
+    (define-key python-mode-map (kbd "C-c |") 'python-shell-send-region)
+    (define-key python-mode-map (kbd "C-c C-x C-u") 'uncomment-region)
+    (define-key python-mode-map (kbd "C-c C-x C-c") 'comment-region)))
 
 (provide 'python-settings)
 

@@ -90,7 +90,6 @@
 ;(include-plugin 'gnuplot-mode)
 (require 'gnuplot-mode)
 
-
 ;-----------;
 ;;; modes ;;;
 ;-----------;
@@ -133,7 +132,7 @@
 (require 'gnus-settings)
 
 ;; ESV Mode
-(require 'esv)
+(require 'esv-settings)
 
 
 
@@ -143,8 +142,5 @@
 (load 
  (setq custom-file (expand-file-name "settings/custom.el" user-emacs-directory))
  'noerror)
-
-
-
-
-
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)

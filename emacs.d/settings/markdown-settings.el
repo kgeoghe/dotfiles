@@ -13,4 +13,7 @@
 	     )
        auto-mode-alist))
 
+(custom-set-variables
+ '(markdown-command "/usr/local/bin/pandoc"))
+
 (provide 'markdown-settings)

@@ -2,6 +2,10 @@
 ;;; LaTeX ;;;
 ;-----------;
 
+;;;_, allows table of contents viewing and navigating in AucTeX via 'C-c ='
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
 ; add texbin to env path so emac.app knows where to find TeX goodies
 (getenv "PATH")
  (setenv "PATH"

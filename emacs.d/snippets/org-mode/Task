@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Task
+# key: task
+# binding: direct-keybinding
+# --
+TODO $0
+:PROPERTIES:
+:ID: `(let ((x (shell-command "uuidgen" t))))`:CREATED: `(let ((x (org-insert-time-stamp nil t t ))))`
+:CLOCK_MODELINE_TOTAL: all
+:CATEGORY: Task
+:END:

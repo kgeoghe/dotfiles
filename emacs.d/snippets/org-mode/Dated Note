@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Dated Note
+# key: dnote
+# binding: direct-keybinding
+# --
+$1
+:PROPERTIES:
+:CREATED: `(let ((x (org-insert-time-stamp nil t t ))))`
+:END:$0

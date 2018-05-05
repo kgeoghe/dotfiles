@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: Total Water Level
-# key: twl
+# name: Incomplete Stamp
+# key: incom
 # binding: direct-keybinding
 # --
-\acro{TWL}
+[INCOMPLETE]

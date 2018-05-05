@@ -25,6 +25,9 @@
 ; don't show the scroll bar
 (if window-system (scroll-bar-mode 0))
 
+; when paging down, keep point in same relative position, vs moving it to top
+(setq scroll-preserve-screen-position t)
+
 ;;;_ , Nicer bell settings
 ; found at http://www.emacswiki.org/emacs/AlarmBell#toc10
 (defun my-terminal-visible-bell ()
@@ -98,7 +101,10 @@
     (java-mode . "java") 
     (awk-mode . "awk") 
     (other . "gnu"))))
- 
+
+; fixes silly indentation that yasnippet likes to replace spaces with
+(setq yas-indent-line (quote none))
+
 ; ignore case when searching
 (setq-default case-fold-search 1)
 
@@ -164,7 +170,8 @@
 ;; easy spell check
 (global-set-key (kbd "<f9>") 'ispell-word)
 (global-set-key (kbd "C-S-<f9>") 'flyspell-mode)
-(global-set-key (kbd "C-M-<f9>") 'flyspell-buffer)
+(global-set-key (kbd "C-M-<f9>") 'flyspell-region)
+(global-set-key (kbd "C-M-S-<f9>") 'flyspell-buffer)
 (global-set-key (kbd "C-<f9>") 'flyspell-check-previous-highlighted-word)
 (defun flyspell-check-next-highlighted-word ()
   "Custom function to spell check next highlighted word"

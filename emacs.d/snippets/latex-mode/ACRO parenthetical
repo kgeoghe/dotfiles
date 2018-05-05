@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Parenthetical ACROnym
+# key: pacro
+# binding: direct-keybinding
+# --
+(\acro{$1})

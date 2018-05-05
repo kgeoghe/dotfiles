@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Record Citation
+# key: cite
+# binding: direct-keybinding
+# --
+* ${1:First Author's Surname}, /${2:Short Title}/.
+:PROPERTIES:
+:BibTeXKey: $3
+:CREATED: `(let ((x (org-insert-time-stamp nil t t ))))`
+:END:
+** $0
+** "${4:Direct Quote}"

@@ -6,9 +6,9 @@
 (require 'org-agenda)
 (require 'org-timer)
 (require 'org-install)
-(add-to-list 'org-modules 'org-habit)
 (require 'holidays)
 (require 'solar)
+(require 'org-habit)
 
 (setq org-tags-column 0)
 (setq org-use-fast-todo-selection t)
@@ -17,7 +17,7 @@
 (define-key global-map "\C-cl" 'org-store-link)
 
 ;;_ , Org habits settings
-(setq org-habit-graph-column 48)
+(setq org-habit-graph-column 42)
 (setq org-habit-following-days 2)
 
 ;; record date/time task was marked DONE
@@ -25,12 +25,19 @@
 
 ;;_ , Basics for org-mode GTD a la jwiegly
 ;; http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner/
-
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 (define-key org-mode-map "\C-xar" 'my-org-archive-done-tasks)
 (define-key global-map "\C-ca" 'org-agenda)
-;(org-defkey org-mode-map "\C-ca" 'org-agenda)
+                                        ;(org-defkey org-mode-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cxp" 'my-pomodoro)
+
+;;_, promote subtasks on DONE for sequential task capability
+(add-hook 'org-after-todo-state-change-hook 'my-org-after-todo-state-change)
+
+;;_, explicitly set archive file so any 'uncategorized' DONE task gets archived under 'No
+; Category'
+(setq org-archive-location "%s_archive::* No Category")
 
 ;;;_ , Timer
 ;; Set alarm for timer done
@@ -44,12 +51,19 @@
                                  (org-timer-start)
                                  (play-sound-file "/Users/kgeoghe/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/DoctorWho-Tardis-TimeMachine.mp3")
                                  (invert-face 'mode-line)
-                                 (run-with-timer 0.4 nil 'invert-face 'mode-line)))
+                                 (run-with-timer 0.4 nil 'invert-face 'mode-line)
+                                 (bh/clock-in-task-by-id "D1F660D2-BD02-42CF-877D-A8770B89CC1A")))
 
 ;; Default countdown value
 (setq org-timer-default-timer 25)
 
 ;;;_ , Clocking work time settings
+; sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
+(setq org-clock-out-remove-zero-time-clocks t)
+; show lot of clocking history so it's easy to pick items
+(setq org-clock-history-length 23)
+; include current clocking task in clock reports
+(setq org-clock-report-include-clocking-task t)
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 ; from http://stackoverflow.com/questions/26405415/how-to-locally-unset-org-clock-into-drawer-t
@@ -225,6 +239,7 @@
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
  '(org-reverse-note-order t)
+ '(org-agenda-tags-column 66)
  '(org-fast-tag-selection-single-key (quote expert))
  '(org-agenda-custom-commands
    (quote (("d" todo "DELEGATED" nil)
@@ -242,7 +257,16 @@
 	      (lambda nil
 		(org-agenda-skip-entry-if (quote scheduled) (quote deadline)
 					  (quote regexp) "\n]+>")))
-	     (org-agenda-overriding-header "Unscheduled TODO entries: "))))))
+	     (org-agenda-overriding-header "Unscheduled TODO entries: ")))
+           ("x" tags-tree "CATEGORY=\"Thesis->Overhead\"|CATEGORY=\"Thesis->Research\"|CATEGORY=\"Thesis->Write\"|CATEGORY=\"Break\"|CATEGORY=\"Lunch\" "
+            ((org-agenda-overriding-header "At the \"office\"")))
+           ("p" tags "CATEGORY=\"Project\"+TODO=\"\""
+            ((org-agenda-overriding-header "Active Projects"))))))
+           ;; ("o" agenda ""
+	   ;;  ((org-agenda-skip-function
+	   ;;    (lambda nil
+	   ;;      (org-agenda-skip-entry-if (quote regexp) "HOME\|"))))))))
+; (Quote regexp) "\n]+>" 
 ; '(org-remember-store-without-prompt t)
  '(org-capture-templates
    (quote
@@ -260,10 +284,10 @@
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
 :END:" :prepend t)
      ("p" "Project" entry
-      (file+regexp "~/Documents/Tasks/todo.txt" "* Thesis")
-      "* %^{Project Title}
+      (file "~/Documents/Tasks/todo.txt")
+      "* %^{Project Title} [/]
 :PROPERTIES:
-:CATEGORY: %^{CATEGORY}
+:CATEGORY: Project
 :ARCHIVE: %s_archive::* %\\1
 :ID: %(shell-command-to-string \"uuidgen\"):CREATED: %U
 :END:" :prepend t)
@@ -276,12 +300,15 @@
           ("m" "Log Mass (Weight)" table-line
       (file+olp "~/org/journal.org" "Logs" "Weight")
       "" :table-line-pos "II-2")
+          ("h" "Log Blood Pressure" table-line
+      (file+olp "~/org/journal.org" "Logs" "BP")
+      "" :table-line-pos "II-2")
           ("b" "Book" entry
       (file+headline "~/org/books.org" "Backlog")
       "* %^{Title}
 :PROPERTIES:
 :CREATED: %u
-:Title: %\\1%^{Author}p%^{DateCompleted}p%^{Rating}p%^{RecommendedBy}p%^{Publisher}p%^{Year}p
+:Title: %\\1%^{Author}p%^{Editor/Translator}p%^{DateCompleted}p%^{Rating}p%^{RecommendedBy}p%^{Publisher}p%^{Year}p
 :END:")))))
 
  ;; '(remember-annotation-functions (quote (org-remember-annotation)))
@@ -628,3 +655,4 @@ items if they have an hour specification like [h]h:mm."
     (nreverse ee)))
 
 (provide 'org-settings)
+

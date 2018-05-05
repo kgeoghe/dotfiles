@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Check later
+# key: check
+# binding: direct-keybinding
+# --
+(?)

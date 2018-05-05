@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Outcome Goals
+# key: og
+# binding: direct-keybinding
+# --
+$0Outcome goals :DAY:
+:PROPERTIES:
+:CREATED: `(let ((x (org-insert-time-stamp nil t t ))))`
+:END:
+1. $1
+2. $2
+3. $3

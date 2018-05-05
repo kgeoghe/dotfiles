@@ -3,7 +3,11 @@
 # key: ref
 # binding: direct-keybinding
 # --
-Today’s Successful Outcome:
+$0Daily reflection :DAY:
+:PROPERTIES:
+:CREATED: `(let ((x (org-insert-time-stamp nil t t ))))`
+:END:
+Today’s Successful Outcomes:
 1. $1
 2. $2
 3. $3

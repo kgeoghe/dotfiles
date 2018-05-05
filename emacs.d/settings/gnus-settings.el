@@ -84,11 +84,16 @@
 ;; (setq bbdb/mail-auto-create-p t
 ;;       bbdb/news-auto-create-p t)
 
-;; auto-complete emacs address using bbdb's own UI
-(add-hook 'message-mode-hook
-          '(lambda ()
-             (flyspell-mode t)
-             (local-set-key "<TAB>"  'bbdb-complete-mail)))
+;; auto-complete emacs address using bbdb's own UI - found this to be non-necessary
+;; for the function following to work - perhaps looks into differences in free time
+;; (add-hook 'message-mode-hook
+;;           '(lambda ()
+;;              (flyspell-mode t)
+;;              (local-set-key "<TAB>"  'bbdb-complete-mail)))
+;;cycling while completing email addresses
+(setq bbdb-complete-mail-allow-cycling t)
+;;No popup-buffers
+(setq bbdb-completion-display-record nil)
 
 ;; Fetch only part of the article if we can.  I saw this in someone
 ;; else's .gnus

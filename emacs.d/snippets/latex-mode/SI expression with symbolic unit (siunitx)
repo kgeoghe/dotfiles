@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: SI expression with symbolic unit (siunitx)
+# key: SIS
+# binding: direct-keybinding
+# --
+\SI{$1}{\\${2:celsius}}
